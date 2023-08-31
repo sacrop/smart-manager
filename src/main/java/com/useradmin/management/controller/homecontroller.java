@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.useradmin.management.helper.Message;
-import com.useradmin.management.model.UserDetails;
+import com.useradmin.management.model.UserDtls;
 import com.useradmin.management.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,7 +33,7 @@ public class homecontroller {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute UserDetails user,@RequestParam(value="agreement",defaultValue = "false") boolean agreement,HttpSession session)
+    public String createUser(@ModelAttribute UserDtls user,@RequestParam(value="agreement",defaultValue = "false") boolean agreement,HttpSession session)
     {
 
         Boolean check=userService.checkbyemail(user.getEmail());
@@ -47,8 +47,8 @@ public class homecontroller {
                  session.setAttribute("message", new Message("email id already exist!!", "alert-danger"));
                 }
              else{
-                UserDetails userdtls=userService.createUser(user);
-                if(userdtls!=null &&agreement){
+                UserDtls userdtls=userService.createUser(user);
+                if(userdtls!=null && agreement){
                     // System.out.println("Registration successfull!");
                     session.setAttribute("message", new Message("successfull registration !!", "alert-success"));
                 }
@@ -63,25 +63,6 @@ public class homecontroller {
         return "redirect:/register";
         }
         
-        // if(check){
-            
-        //     session.setAttribute("message", new Message("email id already exist!!", "alert-danger"));
-        // }
-        // else{
-        //         UserDetails userdtls=userService.createUser(user);
-        //         if(userdtls!=null &&agreement){
-        //             // System.out.println("Registration successfull!");
-        //             session.setAttribute("message", new Message("successfull registration !!", "alert-success"));
-        //         }
-                // else if(agreement){
-                //     // System.out.println("failed to register");
-                //     session.setAttribute("message", new Message("something went wrong !!", "alert-danger"));
-                // }
-                // else{
-                //      session.setAttribute("message", new Message("check terms and conditions!!", "alert-danger"));
-                // }
-
-        // }
         
         
     }

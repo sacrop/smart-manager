@@ -13,6 +13,10 @@
                 <div class="col-md-8 offset-md-2">
                         <div class="my-card mt-5  rounded p-5">
 
+                            <div th:if="${param.error}" class="alert alert-danger">invalid username or password</div>
+                            <div th:if="${param.logout}" class="alert alert-success">successful logout</div>
+
+
                             <div class="d-flex align-items-center justify-content-center">
                                 <img class="icon-regi " src="" th:src="@{/img/login.png}" alt="">
                             </div>
@@ -22,12 +26,13 @@
                                     login here
                             </h1>
 
-                            <form class="text-dark" action="" th:action="@{/do_register}" method="post">
+                            
+                            <form class="text-dark" action=""  th:action="@{/login}" method="post">
                                 
                                   <!-- email section  -->
                                 <div class="mb-3">
-                                    <label for="email_label" class="form-label">Email address</label>
-                                    <input type="email" name="email" class="form-control" id="email_label" placeholder="name@example.com"  required>
+                                    <label  for="email_label" class="form-label">Email address</label>
+                                    <input type="email" name="username" class="form-control" id="email_label" placeholder="name@example.com"  required>
                                   </div>
                                   <!-- password section  -->
                                   <div class="mb-3">

@@ -1,6 +1,6 @@
 package com.useradmin.management.model;
 
-import jakarta.annotation.Generated;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class UserDetails {
+public class UserDtls {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,4 +24,5 @@ public class UserDetails {
     private String password;
 
     private String qualification;
+    private String role;
 }

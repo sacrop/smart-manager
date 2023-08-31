@@ -1,10 +1,10 @@
 package com.useradmin.management.service;
 
-import com.useradmin.management.model.UserDetails;
+import com.useradmin.management.model.UserDtls;
 
 public interface UserService {
     
-    public UserDetails createUser(UserDetails user);
+    public UserDtls createUser(UserDtls user);
  
     public boolean checkbyemail(String email);
 
