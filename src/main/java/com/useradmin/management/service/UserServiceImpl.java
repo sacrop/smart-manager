@@ -1,5 +1,7 @@
 package com.useradmin.management.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,5 +31,40 @@ public class UserServiceImpl  implements UserService{
         
         return userrepo.existsByemail(email);
     }
+
+    @Override
+    public void deleteUserById(int id) {
+        UserDtls user=userrepo.findById(id);
+       
+        if(user!=null){
+            userrepo.delete(user);
+        }
+        
+    }
+
+    @Override
+    public void changeUserRole(int id, String newRole) {
+        UserDtls user=userrepo.findById(id);
+        if(user!=null){
+            user.setRole(newRole);
+            userrepo.save(user);
+        }
+        
+    }
+
+    @Override
+    public List<UserDtls> getAllUser() {
+        return userrepo.findAll();
+    }
+
+    @Override
+    public List<UserDtls> getUserByName(String name) {
+        // TODO Auto-generated method stub
+        return userrepo.findByName(name);
+    }
+
+    
+
+    
     
 }

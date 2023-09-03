@@ -15,6 +15,7 @@ public class SessionHelper {
             System.out.println("removing session");
         HttpSession session=   ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
         session.removeAttribute("message"); 
+        session.removeAttribute("msgp");
         } catch (Exception e) {
             e.printStackTrace();    
         }   

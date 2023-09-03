@@ -50,6 +50,10 @@ public class homecontroller {
 
     }
 
+    @GetMapping("/about")
+    public String aboutpage(){
+        return "/about";
+    }
 
     @PostMapping("/createUser")
     public String createUser(@ModelAttribute UserDtls user,@RequestParam(value="agreement",defaultValue = "false") boolean agreement,HttpSession session)
@@ -68,7 +72,7 @@ public class homecontroller {
              else{
                 UserDtls userdtls=userService.createUser(user);
                 if(userdtls!=null && agreement){
-                    // System.out.println("Registration successfull!");
+                   
                     session.setAttribute("message", new Message("successfull registration !!", "alert-success"));
                 }
             }
@@ -81,7 +85,6 @@ public class homecontroller {
             
         return "redirect:/register";
         }
-        
         
         
     }

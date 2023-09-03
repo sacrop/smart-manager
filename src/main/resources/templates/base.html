@@ -22,37 +22,58 @@
                   <a class="nav-link active" aria-current="page" th:href="@{/}" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#" >about</a>
+                  <a class="nav-link" href="#" th:href="@{/about}">about</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#" th:href="@{/signin}">login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item me-5">
                   <a class="nav-link" href="#" th:href="@{/register}">sign up</a>
                 </li>
               </ul>
             </th:block>
             <th:block th:if="${user!=NULL}">
-              <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0 text-uppercase">
-                <li class="nav-item ">
-                  <a class="nav-link active" aria-current="page"  href="#">Home</a>
-                </li>
-            
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    [[${user.name}]]
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">edit profile</a></li>
-                    <li><a class="dropdown-item" href="#">change password</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">logout</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#" th:href="@{/logout}">logout</a>
-                </li>
-              </ul>
+              <th:block th:if="${user.role=='ROLE_ADMIN'}">
+                <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0 text-uppercase">
+                  <li class="nav-item ">
+                    <a class="nav-link active" aria-current="page"  href="#">Home</a>
+                  </li>
+              
+                  <li class="nav-item dropdown me-5">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      [[${user.name}]]
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">edit profile</a></li>
+                      <li><a class="dropdown-item" href="#" th:href="@{/admin/change}">change password</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" th:href="@{/logout}">logout</a></li>
+                    </ul>
+                  </li>
+  
+                </ul>
+              </th:block>
+              <th:block th:if="${user.role=='ROLE_USER'}">
+                <ul class="navbar-nav ms-auto me-5 mb-2 mb-lg-0 text-uppercase">
+                  <li class="nav-item ">
+                    <a class="nav-link active" aria-current="page"  href="#">Home</a>
+                  </li>
+              
+                  <li class="nav-item dropdown me-5">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      [[${user.name}]]
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">edit profile</a></li>
+                      <li><a class="dropdown-item" href="#" th:href="@{/user/change}">change password</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" th:href="@{/logout}">logout</a></li>
+                    </ul>
+                  </li>
+  
+                </ul>
+              </th:block>
+              
             </th:block>
             
           </div>
