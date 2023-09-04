@@ -88,6 +88,24 @@ public class Admincontroller {
         return "/admin/change_password";
     }
 
+    @GetMapping("/editprof")
+    public String updateprofile()
+    {
+        return "/admin/editprofile";
+    }
+    @PostMapping("/editprofile")
+    public String updatedprofile(Principal p,@RequestParam("qualification") String qualification,@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("address") String address)
+    {
+        UserDtls userdtl=userService.getUserByEmail(p.getName());
+        userdtl.setEmail(email);
+        userdtl.setAddress(address);
+        userdtl.setName(name);
+        userdtl.setQualification(qualification);
+        userRepo.save(userdtl);
+
+        return "redirect:/admin/editprof";
+    }
+
 
     
 
@@ -118,6 +136,45 @@ public class Admincontroller {
 
 
         return"redirect:/admin/change";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "/admin/usercreation";
+    }
+
+    @PostMapping("/createUser")
+    public String createUser(@ModelAttribute UserDtls user,@RequestParam(value="agreement",defaultValue = "false") boolean agreement,HttpSession session)
+    {
+
+        Boolean check=userService.checkbyemail(user.getEmail());
+        try {
+            if(!agreement){
+                
+                throw new Exception("you have not agreed terms and conditions");
+            }
+            if(check){
+            
+                 session.setAttribute("message", new Message("email id already exist!!", "alert-danger"));
+                }
+             else{
+                UserDtls userdtls=userService.createUser(user);
+                if(userdtls!=null && agreement){
+                   
+                    session.setAttribute("message", new Message("successfull registration !!", "alert-success"));
+                }
+            }
+            
+        return "redirect:/admin/register";
+        } 
+            catch (Exception e) {
+            e.printStackTrace();
+            session.setAttribute("message", new Message("something went wrong !!"+e.getMessage(), "alert-danger"));
+            
+        return "redirect:/admin/register";
+        }
+        
+        
     }
 
 }

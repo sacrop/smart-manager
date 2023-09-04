@@ -18,4 +18,9 @@ public interface UserService {
 
     public List<UserDtls> getUserByName(String name);
 
+    public UserDtls getUserByEmail(String email);
+
+    
+
+
 }

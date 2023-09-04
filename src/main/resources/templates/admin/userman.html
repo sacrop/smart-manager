@@ -11,12 +11,13 @@
 
 <body>
 
-  <section class="bannerprop text-light d-flex justify-content-center align-items-center">
+  <section class="bannerprop text-light d-flex justify-content-center">
 
     <div class="container">
       <form class="d-flex my-4" th:action="@{/admin/search}" method="get">
         <input class="form-control me-5 ms-5 " type="search" placeholder="Search" aria-label="Search" name="searchQuery">
         <button class="btn btn-outline-success" type="submit">Search</button>
+        <a class="btn btn-outline-warning  mx-3 text-light" href="" th:href="@{/admin/user}">clear</a>
       </form>
       <table class="table table-bordered table-dark">
         <h1 class="d-flex justify-content-center text-light">USER TABLE</h1>

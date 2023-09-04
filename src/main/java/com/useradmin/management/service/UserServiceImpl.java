@@ -59,8 +59,14 @@ public class UserServiceImpl  implements UserService{
 
     @Override
     public List<UserDtls> getUserByName(String name) {
-        // TODO Auto-generated method stub
+        
         return userrepo.findByName(name);
+    }
+
+    @Override
+    public UserDtls getUserByEmail(String email) {
+        
+        return userrepo.findByEmail(email);
     }
 
     

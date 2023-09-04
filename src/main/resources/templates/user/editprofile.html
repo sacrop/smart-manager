@@ -18,7 +18,7 @@
           Edit profile
         </h1>
         <div class="text-dark" th:each="users:${user}">
-          <form method="post" action="" th:action="@{/admin/editprofile}">
+          <form method="post" action="" th:action="@{/user/editprofile}">
             <div class="mb-3">
               <label for="idinput" class="form-label">ID : [[${user.id}]]</label>
               

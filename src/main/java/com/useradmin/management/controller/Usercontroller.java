@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.useradmin.management.helper.Message;
 import com.useradmin.management.model.UserDtls;
 import com.useradmin.management.repository.UserRepository;
+import com.useradmin.management.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,6 +25,9 @@ public class Usercontroller {
     
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -46,6 +50,25 @@ public class Usercontroller {
     public String loadpass(){
         return "/user/change_password";
     }
+    @GetMapping("/editprof")
+    public String updateprofile()
+    {
+        return "/user/editprofile";
+    }
+
+    @PostMapping("/editprofile")
+    public String updatedprofile(Principal p,@RequestParam("qualification") String qualification,@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("address") String address)
+    {
+        UserDtls userdtl=userService.getUserByEmail(p.getName());
+        userdtl.setEmail(email);
+        userdtl.setAddress(address);
+        userdtl.setName(name);
+        userdtl.setQualification(qualification);
+        userRepo.save(userdtl);
+
+        return "redirect:/user/editprof";
+    }
+
     
     @PostMapping("/updatepassword")
     public String changepass(Principal p, @RequestParam("old") String oldpass, @RequestParam("newpass") String newpass,HttpSession session)
