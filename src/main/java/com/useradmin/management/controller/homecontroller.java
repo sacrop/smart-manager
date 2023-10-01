@@ -1,6 +1,7 @@
 package com.useradmin.management.controller;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.useradmin.management.helper.Message;
 import com.useradmin.management.model.UserDtls;
@@ -27,8 +29,17 @@ public class homecontroller {
     public String home(){
         return "index";
     }
-    @GetMapping("/signin")
-    public String signin(){
+
+    @PostMapping
+    public String homesub(@RequestParam("file")MultipartFile file)
+    {
+        System.out.println(file.getOriginalFilename());
+        System.out.println(file.getContentType());
+        return "redirect:/";
+    }
+
+    @GetMapping("/login")
+    public String login(){
         return "login";
     }
     @GetMapping("/register")

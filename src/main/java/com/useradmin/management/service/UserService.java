@@ -20,7 +20,7 @@ public interface UserService {
 
     public UserDtls getUserByEmail(String email);
 
-    
+    public UserDtls getUserById(int id);
 
 
 }

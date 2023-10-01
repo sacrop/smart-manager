@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.useradmin.management.service.UserdtlsService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -49,7 +51,7 @@ public class SecurityConfiguration {
                                  .anyRequest().authenticated()
                                
                  )
-                 .formLogin(login -> login.loginPage("/signin")
+                 .formLogin(login -> login.loginPage("/login")
                  .loginProcessingUrl("/login")
                  .successHandler(customhandler))
                  .csrf(csrf -> csrf.disable()); 

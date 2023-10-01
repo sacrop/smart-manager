@@ -37,23 +37,27 @@
             <td th:text="${tableuser.name}"></td>
             <td th:text="${tableuser.email}"></td>
             <td th:text="${tableuser.role}"></td>
-            <td>
+            <td class="d-flex gap-2">
               <form action="" th:action="@{/admin/updateadmin}" method="get">
                 <input type="hidden" name="userId" th:value="${tableuser.id}">
                 <button class="btn btn-primary" type="submit">admin</button>
               </form>
-            </td>
-            <td>
-            <td>
               <form action="" th:action="@{/admin/updateuser}" method="get">
                 <input type="hidden" name="userId" th:value="${tableuser.id}">
                 <button class="btn btn-primary" type="submit">user</button>
               </form>
             </td>
+            
             <td>
               <form action="" th:action="@{/admin/delete}" method="get">
                 <input type="hidden" name="userId" th:value="${tableuser.id}">
                 <button class="btn btn-primary" type="submit">delete</button>
+              </form>
+            </td>
+            <td>
+              <form action="" th:action="@{/admin/updateuserdetail}" method="get">
+                <input type="hidden" name="userId" th:value="${tableuser.id}">
+                <button class="btn btn-primary" type="submit">update</button>
               </form>
             </td>
 

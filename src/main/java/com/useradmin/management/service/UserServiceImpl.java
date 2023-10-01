@@ -69,6 +69,12 @@ public class UserServiceImpl  implements UserService{
         return userrepo.findByEmail(email);
     }
 
+    @Override
+    public UserDtls getUserById(int id) {
+        // TODO Auto-generated method stub
+        return userrepo.findById(id);
+    }
+
     
 
     

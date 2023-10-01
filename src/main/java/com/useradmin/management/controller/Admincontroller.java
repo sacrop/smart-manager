@@ -177,4 +177,24 @@ public class Admincontroller {
         
     }
 
+    @GetMapping("/updateuserdetail")
+    public String updateuser(@RequestParam("userId") int id,Model model)
+    {
+        UserDtls user= userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "/admin/updateuser";
+    }
+
+    @PostMapping("/updateuserdetails")
+    public String updateduser(@RequestParam("userId") int id,@RequestParam("qualification") String qualification,@RequestParam("name") String name,@RequestParam("email") String email,@RequestParam("address") String address)
+    {
+        UserDtls user1=userService.getUserById(id);
+        user1.setName(name);
+        user1.setEmail(email);
+        user1.setAddress(address);
+        user1.setQualification(qualification);
+        userRepo.save(user1);
+        return "redirect:/admin/user";
+
+    }
 }

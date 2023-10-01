@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hoem</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <section class="bannerprop d-flex ">
+    <div class="container" style="width:40%;">
+      <div class="mt-5 my-card rounded ">
+        <h1 class="text-center text-dark mb-5">
+          update profile
+        </h1>
+        <div class="text-dark" th:each="users:${user}">
+          <form method="post" action="" th:action="@{/admin/updateuserdetails}">
+            <div class="mb-3">
+              <label for="idinput" class="form-label">ID : [[${users.id}]]</label>
+              <input type="hidden" name="userId" th:value="${user.id}">   
+            </div>
+            <div class="mb-3">
+              <label for="nameinput" class="form-label">Name</label>
+              <input type="text" class="form-control" id="nameinput" th:value="${users.name}" name="name">
+            </div>
+            <div class="mb-3">
+              <label for="nameinput" class="form-label">email</label>
+              <input type="text" class="form-control" id="nameinput" aria-describedby="emailHelp" th:value="${users.email}" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="nameinput" class="form-label">Address</label>
+              <input type="text" class="form-control" id="nameinput" name="address" th:value="${users.address}">
+            </div>
+            <div class="mb-3">
+              <label for="nameinput" class="form-label">qualification</label>
+              <input type="text" class="form-control" id="nameinput" name="qualification" th:value="${users.qualification}">
+            </div>
+            <button type="submit" class="btn btn-primary">update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package com.useradmin.management.configuration;
+package com.useradmin.management.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.useradmin.management.configuration.CustomUsrDtls;
 import com.useradmin.management.model.UserDtls;
 import com.useradmin.management.repository.UserRepository;
 

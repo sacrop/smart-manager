@@ -21,6 +21,8 @@ public interface UserRepository extends JpaRepository<UserDtls,Integer> {
         @Query("SELECT c FROM UserDtls c WHERE c.name=:name")
         public List<UserDtls> findByName(@Param("name") String name);
 
+        
+
     
     
 }
